@@ -12,7 +12,7 @@ import datetime as dt
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("sqlite:///hawaii_weather.sqlite")
+engine = create_engine("sqlite:///C:\\Users\\Lunch\\Documents\\Hawaii_Climate_SQLAlchemy\\Resources\\hawaii.sqlite")
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -20,8 +20,10 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 
 # Save reference to the table
-Measurement = Base.classes.Measurement
+Measurement = Base.classes.measurement
+Station = Base.classes.station
 session = Session(engine)
+
 
 #################################################
 # Flask Setup
@@ -38,8 +40,10 @@ def welcome():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
-        f"/api/v1.0/names<br/>"
-        f"/api/v1.0/passengers"
+        f"/api/v1.0/precipitation<br/>"
+        f"/api/v1.0/stations<br/>"
+        f"/api/v1.0/tobs<br/>"
+        f"/api/v1.0/start/end<br/>"
     )
 
 @app.route("/api/v1.0/precipitation")
